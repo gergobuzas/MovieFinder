@@ -10,10 +10,19 @@ import { MovieService } from '../../services/movie-service';
 })
 export class DiscoverComponent {
      constructor(private movieService: MovieService) {
-          this.getTrendingMovies();
      }
      
-     getTrendingMovies() {
-          this.movieService.getTrendingMovies();
+     ngOnInit(): void {
+          this.movieService.getTrendingMovies().subscribe(
+               (response) => {
+                    // Handle the response here
+                    console.log(response);
+               },
+               (error) => {
+                    // Handle errors
+                    console.error('Error fetching trending movies:', error);
+               }
+          );
      }
+
 }
