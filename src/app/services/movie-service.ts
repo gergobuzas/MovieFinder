@@ -14,8 +14,8 @@ export class MovieService {
           
      }
 
-     getTrendingMovies(): Observable<any> {
-          const url = 'https://api.themoviedb.org/3/discover/movie?language=en-US&page=5&sort_by=popularity.desc';
+     getTrendingMovies(pageNumber: number): Observable<any> {
+          const url = `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${pageNumber}&sort_by=popularity.desc`;
           const headers = new HttpHeaders({
                'Authorization': `Bearer ${environment.accessToken}`,
                'accept': 'application/json'
