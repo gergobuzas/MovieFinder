@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MovieService } from '../../services/movie-service';
 import { Movie } from '../../models/movie.type';
 import { CommonModule, NgFor } from '@angular/common';
@@ -15,23 +15,35 @@ import { GenreService } from '../../services/genre-service';
      styleUrl: './discover.component.css'
 })
 export class DiscoverComponent {
-     movies: Movie[] | undefined;
-
+     @Input() movies: Movie[] | undefined;
+     homePage: boolean = false;
+     genreSearch: boolean = false;
+     genreName: string = "";
+     keywordSearch: boolean = false;
      constructor(private genreService: GenreService, private movieService: MovieService, private router: Router, private route: ActivatedRoute) {
 
      }
+         
 
      ngOnInit(): void {
           this.route.paramMap.subscribe(params => {
+               let receivedMoviesToShow: boolean = this.movies != undefined;
+               if (receivedMoviesToShow) {
+                    this.keywordSearch = true;
+                    return;                  
+               }
                const id = params.get('id');
-               if (id == null)
-                    this.getTrendingMovies();
-               else
+               if (id != null)
                     this.getGenreMovies(parseInt(id, 10));
+               else
+                    // This is the home page, just listing trending movies
+                    this.getTrendingMovies();
+                    
           })
      }
 
      getTrendingMovies() {
+          this.homePage = true;
           this.movieService.getTrendingMovies(1).subscribe(
                (response) => {
                     // Handle the response here
@@ -41,12 +53,14 @@ export class DiscoverComponent {
                (error) => {
                     // Handle errors
                     console.error('Error fetching trending movies:', error);
+                    this.router.navigate(['/']);
                }
           );
      }
 
-     getGenreMovies(id: number) {
-          console.log('Getting genre movies!');
+     async getGenreMovies(id: number) {
+          this.genreSearch = true;
+          this.genreName = await this.genreService.getGenreNameById(id);
           this.movieService.getMoviesBasedOnGenre(id).subscribe(
                (response) => {
                     // Handle the response here
@@ -67,4 +81,5 @@ export class DiscoverComponent {
           this.router.navigate([`/movie/${movie.id}`]);
      }
 
+     
 }

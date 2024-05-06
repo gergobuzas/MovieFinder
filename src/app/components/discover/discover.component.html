@@ -8,7 +8,11 @@
   }
 
 </style>
-<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center">Discover the now trending movies!</h1>
+
+<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="homePage">Discover the now trending movies!</h1>
+<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="genreSearch">More movies from the genre: <i>{{genreName}}</i></h1>
+<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="keywordSearch">Search Results</h1>
+
 
 <div class="container-fluid">
   <div class="row justify-content-center">
