@@ -78,9 +78,16 @@ export class DiscoverComponent {
           )
      }
 
-     onScrollLoad() {
-          console.log("SCROLLL")
+     nextPage() {
           this.pageIndex += 1;
+          if (this.homePage)
+               this.getTrendingMovies();
+     }
+
+     previousPage() {
+          this.pageIndex -= 1;
+          if (this.homePage)
+               this.getTrendingMovies();
      }
 
      navigateToMovieDetails(movie: Movie) {

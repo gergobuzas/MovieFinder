@@ -34,7 +34,7 @@
         <strong>Genres:</strong>
         <div class="row">
           <button type="button" class="btn btn-primary ml-md-3 ml-1 col-md-3 col-sm-12 mt-3"
-            *ngFor="let genre of movie.genres" (click)="navigateToMovieDetails(genre.id)">{{ genre.name }}
+            *ngFor="let genre of movie.genres" (click)="navigateToGenres(genre.id)">{{ genre.name }}
           </button>
         </div>
       </div>

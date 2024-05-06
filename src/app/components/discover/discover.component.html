@@ -1,6 +1,6 @@
-
 <h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="homePage">Discover the now trending movies!</h1>
-<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="genreSearch">More movies from the genre: <i>{{genreName}}</i></h1>
+<h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="genreSearch">More movies from the genre: <i>{{genreName}}</i>
+</h1>
 <h1 class="fs-1 pt-4 pb-4 mb-6 mt-6 text-center" *ngIf="keywordSearch">Search Results</h1>
 
 
@@ -8,7 +8,7 @@
   <div class="row justify-content-center">
     <div class="col-xl-10 col-md-12">
       <div class="d-flex flex-wrap justify-content-center">
-        <div class="overflow-auto">
+        <div class="">
           <div class="row">
             <div class="col-lg-6 col-xxl-4" *ngFor="let movie of movies; let i = index">
               <div class="card m-2">
@@ -34,6 +34,16 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="homePage">
+  <div class="row ">
+    <div class="col-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-danger col-md-3 h-6" (click)="previousPage()"
+        [disabled]="pageIndex === 1">Previous</button>
+      <button type="button" class="btn btn-success col-md-3 h-6" (click)="nextPage()">Next</button>
     </div>
   </div>
 </div>

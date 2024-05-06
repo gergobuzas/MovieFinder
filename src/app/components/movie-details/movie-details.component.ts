@@ -62,7 +62,7 @@ export class MovieDetailsComponent {
           });
      }
 
-     navigateToMovieDetails(id: number) {
+     navigateToGenres(id: number) {
           this.router.navigate([`/genre/${id}`]);
      }
 
