@@ -3,6 +3,7 @@ export interface Person {
      also_known_as: string,
      biography: string,
      birthday: string,
+     character: string,
      deathday: string,
      gender: number,
      homepage: string,

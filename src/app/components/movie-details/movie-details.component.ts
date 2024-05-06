@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgIf, NgFor} from '@angular/common';
 import { GenreService } from '../../services/genre-service';
 import { Genre } from '../../models/genre.type';
+import { Person } from '../../models/person.type';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { Genre } from '../../models/genre.type';
 })
 export class MovieDetailsComponent {
      movie!: Movie;
+     actors: Person[] = []
 
      constructor(private movieService: MovieService, private route: ActivatedRoute, private router: Router) {
           
@@ -36,7 +38,20 @@ export class MovieDetailsComponent {
                               this.router.navigate(['']);
                          }
                          this.movie = response;
-                         //console.log(this.movie);
+                         console.log(this.movie);
+                    },
+                    (error) => {
+                         // Handle errors
+                         console.error('Error fetching movie data', error);
+                         this.router.navigate(['/']);
+                    }
+               );
+
+               this.movieService.getActorsOfAMovie(parseInt(id, 10)).subscribe(
+                    (response) => {
+                         console.log(response);
+                         this.actors = response.cast;
+                         console.log(this.actors);
                     },
                     (error) => {
                          // Handle errors

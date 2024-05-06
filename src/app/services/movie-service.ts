@@ -49,4 +49,13 @@ export class MovieService {
           });
           return this.http.get(url, { headers });
      }
+
+     getActorsOfAMovie(movieId: number): Observable<any> {
+          const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
+          const headers = new HttpHeaders({
+               'Authorization': `Bearer ${environment.accessToken}`,
+               'accept': 'application/json'
+          });
+          return this.http.get(url, { headers });
+     }
 }

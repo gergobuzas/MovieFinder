@@ -20,6 +20,7 @@ export class DiscoverComponent {
      genreSearch: boolean = false;
      genreName: string = "";
      keywordSearch: boolean = false;
+     pageIndex: number = 1;
      constructor(private genreService: GenreService, private movieService: MovieService, private router: Router, private route: ActivatedRoute) {
 
      }
@@ -44,7 +45,7 @@ export class DiscoverComponent {
 
      getTrendingMovies() {
           this.homePage = true;
-          this.movieService.getTrendingMovies(1).subscribe(
+          this.movieService.getTrendingMovies(this.pageIndex).subscribe(
                (response) => {
                     // Handle the response here
                     this.movies = response.results;
@@ -75,6 +76,11 @@ export class DiscoverComponent {
                     console.error('Error fetching trending movies:', error);
                }
           )
+     }
+
+     onScrollLoad() {
+          console.log("SCROLLL")
+          this.pageIndex += 1;
      }
 
      navigateToMovieDetails(movie: Movie) {

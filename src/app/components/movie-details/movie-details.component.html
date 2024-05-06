@@ -1,3 +1,13 @@
+<style>
+  .card {
+    transition: filter 0.3s ease;
+  }
+
+  .card:hover {
+    filter: brightness(1.2)
+  }
+</style>
+
 <div class="container fs-5" *ngIf="movie">
   <div class="row">
     <div class="col-0 col-md-1 fs-1 pt-md-4 pb-4 mb-6 mt-md-6">
@@ -20,13 +30,48 @@
         </p>
       </div>
       <div class="row">
-          <strong>Genres:</strong>
-          <div class="row">
-            <button type="button" class="btn btn-primary ml-md-3 ml-1 col-md-3 col-sm-12 mt-3"
-              *ngFor="let genre of movie.genres" (click) = "navigateToMovieDetails(genre.id)">{{ genre.name }}
-            </button>
-          </div>
+        <strong>Genres:</strong>
+        <div class="row">
+          <button type="button" class="btn btn-primary ml-md-3 ml-1 col-md-3 col-sm-12 mt-3"
+            *ngFor="let genre of movie.genres" (click)="navigateToMovieDetails(genre.id)">{{ genre.name }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<div *ngIf="actors">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-9 pt-5">
+        <div class="d-flex flex-wrap justify-content-center">
+                <h1>Cast</h1>
+          <div class="overflow-auto">
+            <div class="row">
+              <div class="col-xl-3 col-lg-6" *ngFor="let actor of actors">
+                <div class="card m-2" style="max-width: 600px; min-height: 170px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img
+                        src="{{actor.profile_path ? 'https://image.tmdb.org/t/p/w400' + actor.profile_path : 'https://via.placeholder.com/150'}}"
+                        class="img-fluid rounded-start" alt="Actor Image" />
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ actor.name }}</h5>
+                        <p class="card-text">
+                          ({{ actor.character }})
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
