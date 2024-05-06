@@ -23,10 +23,28 @@ export class MovieService {
           return this.http.get(url, { headers });
      }
 
-     getMovieDataById(id: number): Observable<any>{
+     getMovieDataById(id: number): Observable<any> {
           const url = `https://api.themoviedb.org/3/movie/${id}`;
           const headers = new HttpHeaders({
                'Authorization': `Bearer ${environment.accessToken}`,
+               'accept': 'application/json'
+          });
+          return this.http.get(url, { headers });
+     }
+
+     getMoviesBasedOnGenre(genreId: number): Observable<any>  {
+          const url = `https://api.themoviedb.org/3/discover/movie?page=1&sort_by=popularity.desc&with_genres=${genreId}`;
+          const headers = new HttpHeaders({
+               'Authorization': `Bearer ${environment.accessToken}`,  
+               'accept': 'application/json'
+          });
+          return this.http.get(url, { headers });
+     }
+
+     searchForMovie(query: string): Observable<any> {
+          const url = `https://api.themoviedb.org/3/search/movie?query=${query}&page=1`;
+          const headers = new HttpHeaders({
+               'Authorization': `Bearer ${ environment.accessToken }`,  
                'accept': 'application/json'
           });
           return this.http.get(url, { headers });

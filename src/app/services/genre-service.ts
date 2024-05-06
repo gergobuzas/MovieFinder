@@ -10,7 +10,7 @@ import { Genre } from "../models/genre.type";
      providedIn: 'root'
 })
 export class GenreService {
-     private genres!: Genre[];
+     genres!: Genre[];
      constructor(private http: HttpClient) {
           this.getGenres();
      }
@@ -21,9 +21,10 @@ export class GenreService {
                'Authorization': `Bearer ${environment.accessToken}`,
                'accept': 'application/json'
           });
-          this.http.get<Genre[]>(url, { headers })
+          this.http.get<any>(url, { headers })
           .subscribe((response) => {
-               this.genres = response;
+               this.genres = response.genres;
+               console.log('INSIDE THE SERVICE')
                console.log(this.genres);
           },
           (error) => {

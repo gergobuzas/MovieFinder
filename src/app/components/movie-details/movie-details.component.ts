@@ -41,10 +41,14 @@ export class MovieDetailsComponent {
                     (error) => {
                          // Handle errors
                          console.error('Error fetching movie data', error);
-                         this.router.navigate(['']);
+                         //this.router.navigate(['']);
                     }
                );
           });
+     }
+
+     navigateToMovieDetails(id: number) {
+          this.router.navigate([`/genre/${id}`]);
      }
 
 }

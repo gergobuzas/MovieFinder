@@ -1,6 +1,8 @@
 <div class="container fs-5" *ngIf="movie">
   <div class="row">
-    <div class="col-12 fs-1 pt-4 pb-4 mb-6 mt-6">
+    <div class="col-0 col-md-1 fs-1 pt-md-4 pb-4 mb-6 mt-md-6">
+    </div>
+    <div class="col-10 fs-1 pt-4 pb-4 mb-6 mt-md-6 mt-0">
       <h1 class="fw-bold">{{ movie.title }}</h1>
     </div>
   </div>
@@ -8,17 +10,23 @@
     <div class="col-12 col-md-4">
       <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Movie Poster" class="img-fluid">
     </div>
-    <div class="col-12 col-md-8">
-      <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <div class="col-12 col-md-6">
+      <p><strong class="fs-4">Release Date:</strong> {{ movie.release_date }}</p>
       <p><strong>Overview:</strong> {{ movie.overview }}</p>
       <p><strong>Language:</strong> {{ movie.original_language }}</p>
       <div *ngIf="movie.homepage != ''">
-          <p><strong>Website: </strong>
-               <a href="{{ movie.homepage }}">{{ movie.homepage }}</a>
-          </p>
+        <p><strong>Website: </strong>
+          <a href="{{ movie.homepage }}">{{ movie.homepage }}</a>
+        </p>
       </div>
-      <p><strong>Genres:</strong><button type="button" class="btn btn-primary ml-md-3 ml-1 mt-1"
-          *ngFor="let genre of movie.genres">{{ genre.name }}</button></p>
+      <div class="row">
+          <strong>Genres:</strong>
+          <div class="row">
+            <button type="button" class="btn btn-primary ml-md-3 ml-1 col-md-3 col-sm-12 mt-3"
+              *ngFor="let genre of movie.genres" (click) = "navigateToMovieDetails(genre.id)">{{ genre.name }}
+            </button>
+          </div>
+      </div>
     </div>
   </div>
 </div>

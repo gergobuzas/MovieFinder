@@ -6,5 +6,6 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 export const routes: Routes = [
      { path: '', component: DiscoverComponent },
      { path: "movie/:id", component: MovieDetailsComponent},
-     { path: 'search', component:SearchComponent}
+     { path: 'search', component: SearchComponent },
+     { path: "genre/:id", component: DiscoverComponent }
 ];
