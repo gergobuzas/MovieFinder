@@ -6,6 +6,7 @@
   .card:hover {
     filter: brightness(1.2)
   }
+
 </style>
 
 <div class="container fs-5" *ngIf="movie">
@@ -47,11 +48,11 @@
     <div class="row justify-content-center">
       <div class="col-9 pt-5">
         <div class="d-flex flex-wrap justify-content-center">
-                <h1>Cast</h1>
+          <h1 *ngIf="actors.length">Cast</h1>
           <div class="overflow-auto">
             <div class="row">
               <div class="col-xl-3 col-lg-6" *ngFor="let actor of actors">
-                <div class="card m-2" style="max-width: 600px; min-height: 170px;">
+                <div class="card m-2" style="max-width: 600px; min-height: 170px;" (click)="navigateToActorDetails(actor.id)">
                   <div class="row g-0">
                     <div class="col-md-4">
                       <img

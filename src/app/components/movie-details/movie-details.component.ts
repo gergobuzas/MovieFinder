@@ -66,4 +66,8 @@ export class MovieDetailsComponent {
           this.router.navigate([`/genre/${id}`]);
      }
 
+     navigateToActorDetails(id: number) {
+          this.router.navigate([`/actor/${id}`]);
+     }
+
 }

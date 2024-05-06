@@ -1,0 +1,72 @@
+<style>
+  .card {
+    transition: filter 0.3s ease;
+  }
+
+  .card:hover {
+    filter: brightness(1.2)
+  }
+</style>
+
+<div class="container fs-5" *ngIf="person">
+  <div class="row">
+    <div class="col-0 col-md-1 fs-1 pt-md-4 pb-4 mb-6 mt-md-6">
+    </div>
+    <div class="col-10 fs-1 pt-4 pb-4 mb-6 mt-md-6 mt-0">
+      <h1 class="fw-bold">{{ person.name }}</h1>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-4">
+      <img src="https://image.tmdb.org/t/p/w500{{person.profile_path}}" alt="Person Poster" class="img-fluid">
+    </div>
+    <div class="col-12 col-md-6">
+      <p><strong class="fs-4">Birth date:</strong> {{ person.birthday }}</p>
+      <p><strong>Place of birth:</strong> {{ person.place_of_birth }}</p>
+      <p><strong>Biography:</strong> {{ person.biography }}</p>
+      
+      <div *ngIf="person.homepage">
+        <p><strong>Website: </strong>
+          <a href="{{ person.homepage }}">{{ person.homepage }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="movies">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-9 pt-5">
+        <div class="d-flex flex-wrap justify-content-center">
+          <h1 *ngIf="movies.length">Credits</h1>
+          <div class="overflow-auto">
+            <div class="row">
+              <div class="col-xl-3 col-lg-6" *ngFor="let movie of movies">
+                <div class="card m-2" style="max-width: 600px; min-height: 170px;"
+                  (click)="navigateToMovieDetails(movie.id)">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img
+                        src="{{movie.poster_path ? 'https://image.tmdb.org/t/p/w400' + movie.poster_path : 'https://via.placeholder.com/150'}}"
+                        class="img-fluid rounded-start" alt="Movie Image" />
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <p class="card-text">
+                          ({{ movie.release_date }})
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ -->
