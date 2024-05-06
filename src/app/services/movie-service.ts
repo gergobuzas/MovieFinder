@@ -22,4 +22,13 @@ export class MovieService {
           });
           return this.http.get(url, { headers });
      }
+
+     getMovieDataById(id: number): Observable<any>{
+          const url = `https://api.themoviedb.org/3/movie/${id}`;
+          const headers = new HttpHeaders({
+               'Authorization': `Bearer ${environment.accessToken}`,
+               'accept': 'application/json'
+          });
+          return this.http.get(url, { headers });
+     }
 }
